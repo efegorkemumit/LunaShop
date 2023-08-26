@@ -1,0 +1,87 @@
+<article>
+
+  <header>
+
+  <section class="bg-center bg-full  bg-gray-900 bg-blend-multiply" style="background-image: url('{{ article.image | image_url: width: 2048 }}');">
+        <div class="px-4 mx-auto max-w-screen-xl text-center py-8 lg:py-24">
+          <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
+            {{ article.title }}</h1>
+        </div>
+      </section>
+
+
+  
+
+  </header>
+
+  <section class="bg-white dark:bg-gray-900">
+      <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+        <div class="mr-auto place-self-center lg:col-span-7">
+          <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
+            {{ article.title }}</h1>
+            {%- if section.settings.blog_show_author -%}
+            <h6 class="mx-0 float-left mr-5"> By {{ article.author }} </h6>
+        {%- endif -%}
+        {%- if section.settings.blog_show_date -%}
+        <h6  class="mx-5 ">
+          {{ article.published_at | date: "%b %d, %y" }}
+          </h6>
+      {%- endif -%}
+
+          <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
+            {{ article.content }}
+          
+          </p>
+      
+
+
+      
+      </div>
+      <div class="hidden lg:mt-0 lg:col-span-5 lg:flex rounded-lg">
+        <img
+          src="{{ article.image | img_url: '600x400' }}"
+          alt="{{ article.title }}"
+          class="rounded-lg">
+
+      </div>
+    </div>
+
+</section>
+
+  {%- if article.tags.size > 0 -%}
+    <footer>
+      <ul aria-label="Tags">
+      {%- for tag in article.tags -%}
+        <li>
+          <a href="{{ blog.url }}/tagged/{{ tag | handle }}">
+            {{ tag }}
+          </a>
+        </li>
+      {%- endfor -%}
+      </ul>
+    <footer>
+  {%- endif -%}
+
+</article>
+
+
+
+{% schema %}
+{
+  "name": "Posts",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "blog_show_author",
+      "label": "Show author",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_date",
+      "label": "Show date",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

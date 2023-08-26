@@ -683,6 +683,10 @@ video {
   margin-right: auto;
 }
 
+.block {
+  display: block;
+}
+
 .inline-block {
   display: inline-block;
 }
@@ -950,6 +954,30 @@ video {
 
 .bg-\[url\(\'\/\{\{article\.image\}\}\'\)\] {
   background-image: url('/{{article.image}}');
+}
+
+.bg-\[url\(\'\{\{section\.settings\.image\}\}\'\)\] {
+  background-image: url('{{section.settings.image}}');
+}
+
+.bg-\[url\(\'\{\{section\.settings\.Slide\}\}\'\)\] {
+  background-image: url('{{section.settings.Slide}}');
+}
+
+.bg-\[url\(\'\{\{block\.settings\.Slide\}\}\'\)\] {
+  background-image: url('{{block.settings.Slide}}');
+}
+
+.bg-\[url\(\'\{\{block\.settings\.image\}\}\'\)\] {
+  background-image: url('{{block.settings.image}}');
+}
+
+.bg-\[url\(\'\{\{blocks\.settings\.image\}\}\'\)\] {
+  background-image: url('{{blocks.settings.image}}');
+}
+
+.bg-cover {
+  background-size: cover;
 }
 
 .bg-center {

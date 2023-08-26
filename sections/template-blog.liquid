@@ -1,10 +1,20 @@
-<section class="bg-center bg-full bg-[url('/assets/header.png')] bg-gray-700 bg-blend-multiply">
-  <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
-    <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
-      {{ page_title }}</h1>
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'slide' %}
+    <div class="slide" {{ block.shopify_attributes }}>
 
-  </div>
-</section>
+      <section class="bg-center bg-full  bg-gray-700 bg-blend-multiply" style="background-image: url('{{ block.settings.image | image_url: width: 2048 }}');">
+        <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
+          <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
+            {{ page_title }}</h1>
+
+        </div>
+      </section>
+    </div>
+    ...
+  {% endcase %}
+{% endfor %}
+
 
 <div class="bg-white p-8 shadow-md rounded-md m-4">
 
@@ -63,6 +73,20 @@
         "default": true
       }
 
+    ],
+    "blocks": [
+      {
+        "name": "Slide",
+        "type": "slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      }
     ]
+
   }
 {% endschema %}

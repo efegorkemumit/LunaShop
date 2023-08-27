@@ -3,9 +3,9 @@
     {% when 'slide' %}
     <div class="slide" {{ block.shopify_attributes }}>
 
-      <section class="bg-center bg-full  h-48  bg-gray-700 bg-blend-multiply" style="background-image: url('{{ block.settings.image | image_url: width: 2048 }}');">
-        <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-26">
-          <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-2xl">
+      <section  class="bg-center bg-full h-48 my-4 bg-blend-multiply object-cover transition duration-1000 case-in-out hover:scale-105 transform" style="background-image: url('{{ block.settings.image | image_url: width: 2048 }}');">
+        <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-16">
+            <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-4xl">
             <h1>{{ collection.title }}</h1>
 
         </div>

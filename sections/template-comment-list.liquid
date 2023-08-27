@@ -1,0 +1,74 @@
+{%- assign new_comment = false -%}
+{%- if comment and comment.created_at -%}
+  {%- assign new_comment = true -%}
+  {%- assign new_comment_id = comment.id -%}
+{%- endif -%}
+
+{%- if new_comment -%}
+  {%- assign duplicate_comment = false -%}
+  {%- for comment in article.comments -%}
+    {%- if comment.id == new_comment_id -%}
+      {%- assign duplicate_comment = true -%}
+      {% break %}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- if duplicate_comment -%}
+    {%- assign number_of_comments = article.comments_count -%}
+  {%- else -%}
+    {%- assign number_of_comments = article.comments_count | plus: 1 -%}
+  {%- endif -%}
+{%- else -%}
+  {%- assign number_of_comments = article.comments_count -%}
+{%- endif -%}
+
+<!-- Code to output article content can be added here. -->
+<div class="flex items-center justify-start w-screen full-w  bg-white dark:bg-gray-800 mx-auto px-4 lg:px-80 ">
+  {%- if blog.comments_enabled? -%}
+    {%- if number_of_comments > 0 -%}
+      <hr aria-hidden="true">
+
+      <ul>
+
+        <!-- If a comment was just submitted with no blank field, show it. -->
+        {%- if new_comment -%}
+          <div class="bg-white dark:bg-gray-800 text-black dark:text-gray-200 p-4 container mx-auto px-4 lg:px-20   ">
+            <img class="rounded-full h-8 w-8 mr-2 mt-1 " src="https://picsum.photos/id/1027/200/200" />
+            <div>
+              <div class="bg-gray-100 dark:bg-gray-700 rounded-3xl px-4 pt-2 pb-2.5 w-full">
+                <div class="font-semibold text-sm leading-relaxed">{{ comment.author }}</div>
+                <div class="text-normal leading-snug md:leading-normal">
+                  {{ comment.content }}
+                </div>
+              </div>
+              <div class="text-sm ml-4 mt-0.5 text-gray-500 dark:text-gray-400">
+                {{ comment.created_at | date: "%b %d, %y" }}</div>
+              <div class="bg-white dark:bg-gray-700 border border-white dark:border-gray-700 rounded-full float-right -mt-8 mr-0.5 flex shadow items-center "></div>
+            </div>
+          </div>
+
+        {%- endif -%}
+
+        {% for comment in article.comments %}
+          {% unless comment.id == new_comment_id %}
+            <div class="bg-white dark:bg-gray-800 text-black dark:text-gray-200 p-4 container mx-auto px-4 lg:px-20   ">
+              <img class="rounded-full h-8 w-8 mr-2 mt-1 " src="https://picsum.photos/id/1027/200/200" />
+              <div>
+                <div class="bg-gray-100 dark:bg-gray-700 rounded-3xl px-4 pt-2 pb-2.5 w-full">
+                  <div class="font-semibold text-sm leading-relaxed">{{ comment.author }}</div>
+                  <div class="text-normal leading-snug md:leading-normal">
+                    {{ comment.content }}</div>
+                </div>
+                <div class="text-sm ml-4 mt-0.5 text-gray-500 dark:text-gray-400">
+                  {{ comment.created_at | date: "%b %d, %y" }}</div>
+                <div class="bg-white dark:bg-gray-700 border border-white dark:border-gray-700 rounded-full float-right -mt-8 mr-0.5 flex shadow items-center "></div>
+              </div>
+            </div>
+
+          {% endunless %}
+        {% endfor %}
+
+      </ul>
+    {%- endif -%}
+  </div>
+{%- endif -%}

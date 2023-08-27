@@ -1,0 +1,109 @@
+{% paginate collection.products by section.settings.product_per_page %}
+  <div class="bg-white">
+    <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+      <h2 class="sr-only">
+        <h1>{{ collection.title }}</h1>
+      </h2>
+
+      <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+
+
+        {% for product in collection.products %}
+          <a href="{{ product.url | within: collection }}" class="group">
+            <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+              <img
+                src="{{ product.featured_image.src | img_url: 'large' }}"
+                alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
+                class="h-full w-full object-cover object-center group-hover:opacity-75">
+            </div>
+            <h3 class="mt-4 text-sm text-gray-700">{{ product.title }}</h3>
+            <p class="mt-1 text-lg font-medium text-gray-900">
+              {{ product.price | money }}</p>
+          </a>
+
+
+        {% endfor %}
+
+
+
+        <!-- More products... -->
+      </div>
+    </div>
+  </div>
+  {%- if paginate.pages > 1 -%}
+    <nav role="navigation" class="flex items-center justify-center mt-8">
+      <ol class="flex list-none">
+        {%- if paginate.previous -%}
+          <li class="mr-2">
+            <a href="{{ paginate.previous.url }}" class="px-3 py-2 bg-gray-200 rounded-lg text-gray-600 hover:bg-gray-300">
+              &laquo; Previous
+            </a>
+          </li>
+        {%- else -%}
+          <li class="mr-2">
+            <span class="px-3 py-2 bg-gray-200 rounded-lg text-gray-600 cursor-not-allowed">
+              &laquo; Previous
+            </span>
+          </li>
+        {%- endif -%}
+
+        {%- for part in paginate.parts -%}
+          {%- if part.is_link -%}
+            <li class="mr-2">
+              <a href="{{ part.url }}" class="px-3 py-2 bg-gray-200 rounded-lg text-gray-600 hover:bg-gray-300">
+                {{ part.title }}
+              </a>
+            </li>
+          {%- else -%}
+            {%- if part.title == paginate.current_page -%}
+              <li class="mr-2">
+                <span class="px-3 py-2 bg-blue-500 rounded-lg text-white">
+                  {{ part.title }}
+                </span>
+              </li>
+            {%- else -%}
+              <li class="mr-2">
+                <a href="#" class="px-3 py-2 bg-gray-200 rounded-lg text-gray-600 cursor-not-allowed">
+                  {{ part.title }}
+                </a>
+              </li>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- if paginate.next -%}
+          <li class="mr-2">
+            <a href="{{ paginate.next.url }}" class="px-3 py-2 bg-gray-200 rounded-lg text-gray-600 hover:bg-gray-300">
+              Next &raquo;
+            </a>
+          </li>
+        {%- else -%}
+          <li class="mr-2">
+            <span class="px-3 py-2 bg-gray-200 rounded-lg text-gray-600 cursor-not-allowed">
+              Next &raquo;
+            </span>
+          </li>
+        {%- endif -%}
+      </ol>
+    </nav>
+  {%- endif -%}
+
+{% endpaginate %}
+
+
+{% schema %}
+  {
+    "name": "Blog pages",
+    "settings": [
+      {
+        "type": "number",
+        "id": "product_per_page",
+        "label": "product per page ",
+        "default": 8
+      }
+
+    ]
+
+
+  }
+{% endschema %}

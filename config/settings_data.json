@@ -1,6 +1,42 @@
 {
-  "current": "Default",
+  "current": {
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "mobile_menu_title": "Menu",
+          "menu": "main-menu"
+        }
+      },
+      "homepage": {
+        "type": "homepage",
+        "settings": {
+        }
+      },
+      "template-blog": {
+        "type": "template-blog",
+        "blocks": {
+          "b76e87ce-e726-4391-b594-339dd96636bd": {
+            "type": "slide",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/header.png"
+            }
+          }
+        },
+        "block_order": [
+          "b76e87ce-e726-4391-b594-339dd96636bd"
+        ],
+        "settings": {
+          "blog_show_author": true
+        }
+      }
+    },
+    "content_for_index": [
+
+    ]
+  },
   "presets": {
-    "Default": { }
+    "Default": {
+    }
   }
 }

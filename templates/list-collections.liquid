@@ -1,19 +1,35 @@
-{% for collection in collections %}
-  {% unless collection.handle == 'frontpage' %}
-    {% capture collection_title %}
-      {{ collection.title | escape }}{% endcapture %}
-    <a href="{{ collection.url }}">More {{ collection_title }} &rsaquo;</a>
-    {% for product in collection.products limit: 5 %}
-      {% assign grid_item_width = 'large--one-fifth medium--one-half' %}
-      <div>
-        <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
-        {{ product.price | money }}
-        {% unless product.available %}<br><strong>sold out</strong>
-        {% endunless %}
-        <a href="{{ product.url | within: collection }}">
-          <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
-        </a>
-      </div>
-    {% endfor %}
-  {% endunless %}
-{% endfor %}
+<ul>
+  {%- for collection in collections -%}
+    <li>
+      <!--
+      These control flow tags check to see if there is a featured image for a collection.
+      If there isn't one, then we assign the image from the first product in the collection.
+      -->
+      {%- if collection.image -%}
+        {%- assign collection_image = collection.image -%}
+      {%- elsif collection.products.first and collection.products.first.images != empty -%}
+        {%- assign collection_image = collection.products.first.featured_image -%}
+      {%- else -%}
+        {%- assign collection_image = blank -%}
+      {%- endif -%}
+      <a href="{{ collection.url }}">
+        <div class="grid grid-cols-6 gap-4">
+
+          <div class="col-start-2 col-span-4">
+            <section class="bg-center bg-full h-48 my-4 bg-blend-multiply object-cover transition duration-1000 case-in-out hover:scale-105 transform" style="background-image: url('{{ collection_image | image_url: width: 2048 }}');">
+              <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-16">
+                <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-4xl">
+                  {{ collection.title }}</h1>
+
+              </div>
+            </section>
+          </div>
+
+        </div>
+      </a>
+
+
+
+    </li>
+  {%- endfor -%}
+</ul>

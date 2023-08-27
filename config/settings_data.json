@@ -39,6 +39,17 @@
       },
       "template-collection": {
         "type": "template-collection",
+        "blocks": {
+          "a30c9e40-dbc2-44b5-bfa0-0bd1678c2887": {
+            "type": "slide",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Adsiz_1024_x_400_piksel.png"
+            }
+          }
+        },
+        "block_order": [
+          "a30c9e40-dbc2-44b5-bfa0-0bd1678c2887"
+        ],
         "settings": {
           "product_per_page": 0
         }

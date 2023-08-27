@@ -678,6 +678,11 @@ video {
   margin-bottom: 1.25rem;
 }
 
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
 .-ml-5 {
   margin-left: -1.25rem;
 }
@@ -852,6 +857,10 @@ video {
 
 .table {
   display: table;
+}
+
+.table-row {
+  display: table-row;
 }
 
 .grid {
@@ -1651,6 +1660,11 @@ video {
 .text-emerald-500 {
   --tw-text-opacity: 1;
   color: rgb(16 185 129 / var(--tw-text-opacity));
+}
+
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
 .underline {

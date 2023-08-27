@@ -36,6 +36,12 @@
         "settings": {
           "blog_show_author": true
         }
+      },
+      "template-collection": {
+        "type": "template-collection",
+        "settings": {
+          "product_per_page": 1
+        }
       }
     },
     "content_for_index": [

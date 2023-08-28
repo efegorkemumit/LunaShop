@@ -11,6 +11,7 @@
       "homepage": {
         "type": "homepage",
         "settings": {
+          "duyurular": "s"
         }
       },
       "template-blog": {
@@ -52,6 +53,23 @@
         ],
         "settings": {
           "product_per_page": 0
+        }
+      },
+      "contact-page": {
+        "type": "contact-page",
+        "blocks": {
+          "2442f443-2ed8-4f71-8662-9da1bccf7dfa": {
+            "type": "slide",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/pexels-chloe-huiss-1217573.jpg"
+            }
+          }
+        },
+        "block_order": [
+          "2442f443-2ed8-4f71-8662-9da1bccf7dfa"
+        ],
+        "settings": {
+          "smessage": "Success alert! Change a few things up and try submitting again"
         }
       }
     },

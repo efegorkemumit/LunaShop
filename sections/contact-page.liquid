@@ -6,7 +6,7 @@
       <!-- Row -->
       <div class="w-full xl:w-3/4 lg:w-11/12 flex">
         <!-- Col -->
-        <div class="w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg" style="background-image: url('https://source.unsplash.com/Mv9hjnEUHR4/600x800')"></div>
+        <div class="w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg" style="background-image: url('{{ block.settings.image | image_url: width: 2048 }}')"></div>
         <!-- Col -->
         <div class="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none">
           <h3 class="pt-4 text-2xl text-center">Contact
@@ -15,7 +15,12 @@
           <div class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
             {% form 'contact' %}
               {% if form.posted_successfully? %}
-                Thank you for your contact
+              <div class="flex bg-green-100 rounded-lg p-4 mb-4 text-sm text-green-700" role="alert">
+                <svg class="w-5 h-5 inline mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                <div>
+                    <span class="font-medium">{{section.settings.smessage}}</span>
+                </div>
+            </div>
               {% endif %}
               {{ form.errors | default_errors }}
               <div class="mb-4 md:flex md:justify-between">
@@ -81,3 +86,32 @@
     </div>
   </div>
 </body>
+
+{% schema %}
+    {
+      "name": "Contact Page",
+      "settings": [
+        {
+          "type": "text",
+          "id": "smessage",
+          "label": "Success Message",
+          "default": "Success alert! Change a few things up and try submitting again"
+        }
+  
+      ],
+      "blocks": [
+        {
+          "name": "Slide",
+          "type": "slide",
+          "settings": [
+            {
+              "type": "image_picker",
+              "id": "image",
+              "label": "Image"
+            }
+          ]
+        }
+      ]
+  
+    }
+  {% endschema %}

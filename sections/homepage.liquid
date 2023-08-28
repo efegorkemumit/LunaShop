@@ -1,11 +1,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flickity@2.2.2/dist/flickity.min.css">
 
 
-{% for block in section.blocks %}
-  <div class="main-carousel">
+
+<div class="main-carousel">
+  {% for block in section.blocks %}
     <div class="carousel-cell"><img src="{{ block.settings.image | image_url: width: 2048 }}"></div>
-  </div>
-{% endfor %}
+  {% endfor %}
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flickity@2.2.2/dist/flickity.pkgd.min.js"></script>
@@ -33,7 +35,7 @@
         "type": "text",
         "id": "duyurular",
         "label": "Show author",
-        "default": true
+        "default": "s"
       }
     ],
     "blocks": [

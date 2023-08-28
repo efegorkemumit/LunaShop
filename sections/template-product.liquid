@@ -28,7 +28,7 @@
             method="post"
             enctype="multipart/form-data"
             id="AddToCartForm">
-            <select name="id" id="productSelect">
+            <select class="border-2" name="id" id="productSelect">
               {% for variant in product.variants %}
                 {% if variant.available %}
                   <option value="{{ variant.id }}">
@@ -46,15 +46,16 @@
             <input
               type="number"
               id="Quantity"
+              class="border-2"
               name="quantity"
               value="1"
               min="1">
             <button
+            class="bg-blue-500 text-white px-4 py-2 rounded"
               type="submit"
               name="add"
               id="AddToCart">Add to cart</button>
           </form>
-            <button class="bg-blue-500 text-white px-4 py-2 rounded">Sepete Ekle</button>
         </div>
     </div>
    

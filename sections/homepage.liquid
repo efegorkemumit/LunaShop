@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flickity@2.2.2/dist/flickity.min.css">
+
+
+{% for block in section.blocks %}
+  <div class="main-carousel">
+    <div class="carousel-cell"><img src="{{ block.settings.image | image_url: width: 2048 }}"></div>
+  </div>
+{% endfor %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flickity@2.2.2/dist/flickity.pkgd.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('.main-carousel').flickity({
+
+      // Flickity'nin özelleştirme seçeneklerini burada belirleyebilirsiniz
+      cellAlign: 'left',
+      contain: true,
+      autoPlay: 5000, // Otomatik geçiş süresi (ms)
+      prevNextButtons: true, // Önceki ve sonraki düğmelerini göster
+      pageDots: true // Sayfa noktalarını göster
+    });
+  });
+</script>
+
+
+
+{% schema %}
+  {
+    "name": "Homepage",
+    "settings": [
+      {
+        "type": "text",
+        "id": "duyurular",
+        "label": "Show author",
+        "default": true
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Slide",
+        "type": "slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      }
+    ]
+
+  }
+{% endschema %}

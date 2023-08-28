@@ -35,7 +35,8 @@
           "d4f8a290-0489-4815-b8e1-38bd3e4b1dfd"
         ],
         "settings": {
-          "blog_show_author": true
+          "blog_show_author": true,
+          "blog_post": 3
         }
       },
       "template-collection": {
@@ -61,7 +62,7 @@
           "2442f443-2ed8-4f71-8662-9da1bccf7dfa": {
             "type": "slide",
             "settings": {
-              "image": "shopify:\/\/shop_images\/pexels-chloe-huiss-1217573.jpg"
+              "image": "shopify:\/\/shop_images\/pexels-evg-kowalievska-1174776.jpg"
             }
           }
         },

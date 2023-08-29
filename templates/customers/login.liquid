@@ -1,28 +1,110 @@
-<!-- /templates/customers/login.liquid -->
+<div class="h-full flex items-center justify-center py-12 px-6 md:px-4" x-data="{loginForm: true, pwRecoveryForm:false}">
+  <div x-show="loginForm" class="max-w-md w-full space-y-8">
+    <div>
+      <h1 class="text-center text-3xl font-bold mt-6">
+        Sing in your account
+      </h1>
+    </div>
+    <div>
+      <div class="mt-8">
+        {% form 'customer_login' %}
 
-<h2>Login</h2>
-{% form 'customer_login' %}
+          {% if form.errors %}
+            <div class="relative border border-red-400 bg-red-100 text-red-700 px-4 py-3" role="alert">
 
-  {{ form.errors | default_errors }}
+              <strong class="font-bold">Error!</strong>
+              <p class="block sm:inline">
+                {{ form.errors | default_errors }}</p>
+            </div>
 
-  <label for="customer_email">Email Address</label>
-  <input type="email" name="customer[email]" />
+          {% endif %}
 
-  <label for="customer_password">Password</label>
-  <input type="password" name="customer[password]" />
+          <div class="my-2">
+            <label class="sr-only" for="email">Email</label>
+            <input
+              type="email"
+              name="customer[email]"
+              class="relative block w-full px-3 py-2 border"
+              placeholder="Email">
+          </div>
 
-  <input type="submit" value="Sign In" />
+          <div class="my-2">
+            <label class="sr-only" for="password">Password</label>
+            <input
+              type="password"
+              name="customer[password]"
+              class="relative block w-full px-3 py-2 border">
+          </div>
 
-{% endform %}
+          <div class="my-2">
+            <a
+              x-on:click="loginForm=false; pwRecoveryForm=true"
+              href="#"
+              class="underline text-gray-500 hover:text-gray-800">Forger Password</a>
+          </div>
 
-<h2>Forgot Password</h2>
-{% form 'recover_customer_password' %}
 
-  {{ form.errors | default_errors }}
 
-  <label for="customer_email">Email Address</label>
-  <input type="email" name="email" />
+          <div class="my-2">
+            <input
+              type="submit"
+              class="relative w-full py-2 px-4 text-sm font-medium text-white bg-gray-900 hover:bg-gray-600"
+              value="Sign in">
+          </div>
+        {% endform %}
+      </div>
 
-  <input type="submit" value="Submit" />
 
-{% endform %}
+    </div>
+
+    {% if shop.checkout.guest_login %}
+      {% form 'guest_login' %}
+        <div class="submit">
+          <input type="submit" value="Continue as guest">
+        </div>
+      {% endform %}
+    {% endif %}
+
+  </div>
+  <div x-show="pwRecoveryForm" class="max-w-md w-full space-y-8">
+    <div>
+      <h1 class="text-center text-3xl font-bold mt-6">
+        Forger Password
+      </h1>
+    </div>
+    <div class="mt-8">
+      {% form 'recover_customer_password' %}
+        {{ form.errors | default_errors }}
+
+        <div class="my-2">
+          <label class="sr-only" for="email">Email</label>
+          <input
+            type="email"
+            placeholder="Email"
+            class="relative block w-full px-3 py-2 border"
+            name="email">
+        </div>
+
+        <div class="my-2">
+          <input
+            class="relative w-full py-2 px-4 text-sm font-medium text-white bg-gray-900 hover:bg-gray-600"
+            type="submit"
+            value="Submit">
+        </div>
+
+        <div class="my-2">
+          <a
+            x-on:click="loginForm= true; pwRecoveryForm=false"
+            href="#"
+            class="underline text-gray-500 hover:text-gray-800">Back to login</a>
+        </div>
+
+      {% endform %}
+    </div>
+
+
+  </div>
+
+
+
+</div>
